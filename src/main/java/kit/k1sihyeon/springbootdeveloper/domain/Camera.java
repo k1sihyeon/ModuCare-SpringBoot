@@ -16,7 +16,7 @@ public class Camera {
     @Column(name = "cam_id", nullable = false)
     private Long id;
 
-    @Column(name = "cam_location", nullable = false)
+    @Column(name = "cam_location")
     private String location;
 
     @Builder
