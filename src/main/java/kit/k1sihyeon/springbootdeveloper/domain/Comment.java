@@ -19,14 +19,14 @@ public class Comment {
     private Long id;
 
     @Column(name = "usr_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     private String content;
 
     private LocalDateTime createdAt;
 
     @Builder
-    public Comment(Long userId, String content, LocalDateTime createdAt) {
+    public Comment(String userId, String content, LocalDateTime createdAt) {
         this.userId = userId;
         this.content = content;
         this.createdAt = createdAt;
