@@ -1,9 +1,6 @@
 package kit.k1sihyeon.springbootdeveloper.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usr_id", nullable = false)
     private String id;
 

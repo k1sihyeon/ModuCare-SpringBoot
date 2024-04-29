@@ -25,11 +25,8 @@ public class Log {
     private Long camId;
 
     private String content;
-
     private String imagePath;
-
     private LocalDateTime createdAt;
-
     private Boolean isChecked;
 
     @Builder
