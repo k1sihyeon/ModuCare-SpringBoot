@@ -14,4 +14,9 @@ public class CameraService {
     public Camera addCamera(AddCameraRequest request) {
         return cameraRepository.save(request.toEntity());
     }
+
+    public Camera getCamera(Long id) {
+        return cameraRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid camera id"));
+    }
 }

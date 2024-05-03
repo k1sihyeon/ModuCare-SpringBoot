@@ -1,6 +1,7 @@
 package kit.k1sihyeon.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "log")
 public class Log {
@@ -18,29 +21,16 @@ public class Log {
     @Column(name = "log_id", nullable = false)
     private Long id;
 
-    @Column(name = "cam_id", nullable = false)
-    private Long camId;
+    @ManyToOne
+    @JoinColumn(name = "lcam_id", referencedColumnName = "cam_id", insertable = false, updatable = false)
+    private Camera camera;
 
     private String content;
     private String imagePath;
     private LocalDateTime createdAt;
     private Boolean isChecked;
 
-    @Builder
-    public Log(Long camId, String content, String imagePath, LocalDateTime createdAt, Boolean isChecked) {
-        this.camId = camId;
-        this.content = content;
-        this.imagePath = imagePath;
-        this.createdAt = createdAt;
-        this.isChecked = isChecked;
-    }
-
     public void check() {
         this.isChecked = true;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "cam_id", referencedColumnName = "cam_id", insertable = false, updatable = false)
-    private Camera camera;
-
 }

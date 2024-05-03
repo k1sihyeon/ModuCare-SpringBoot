@@ -21,10 +21,10 @@ public class Comment {
     @Column(name = "cmt_id", nullable = false)
     private Long id;
 
-    @Column(name = "usr_id", nullable = false)
+    @Column(name = "cmt_usr_id", nullable = false)
     private String userId;
 
-    @Column(name = "log_id", nullable = false)
+    @Column(name = "cmt_log_id", nullable = false)
     private Long logId;
 
     private String content;
@@ -32,10 +32,10 @@ public class Comment {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "cmt_usr_id", referencedColumnName = "usr_id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "log_id", referencedColumnName = "log_id", insertable = false, updatable = false)
+    @JoinColumn(name = "cmt_log_id", referencedColumnName = "log_id", insertable = false, updatable = false)
     private Log log;
 }

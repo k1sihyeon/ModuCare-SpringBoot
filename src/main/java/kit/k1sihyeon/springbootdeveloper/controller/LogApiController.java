@@ -19,6 +19,7 @@ public class LogApiController {
 
     @RequestMapping("/api/logs")
     public ResponseEntity<Log> addLog(@RequestBody AddLogRequest request) {
+
         Log savedLog = logService.addLog(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedLog);

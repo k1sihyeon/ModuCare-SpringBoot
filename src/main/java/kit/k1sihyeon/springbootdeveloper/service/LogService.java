@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class LogService {
     private final LogRepository logRepository;
     private final CameraRepository cameraRepository;
-    private final CommentRepository commentRepository;
 
     public Log addLog(AddLogRequest request) {
         Camera camera = cameraRepository.findById(request.getCamId())

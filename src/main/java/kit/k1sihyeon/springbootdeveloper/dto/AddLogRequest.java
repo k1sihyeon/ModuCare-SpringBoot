@@ -25,11 +25,8 @@ public class AddLogRequest {
     }
 
     public Log toEntity(Camera camera) {
-
-        this.camId = camera.getId();
-
         return Log.builder()
-                .camId(camId)
+                .camera(camera)
                 .content(content)
                 .imagePath(imagePath)
                 .createdAt(createdAt)
