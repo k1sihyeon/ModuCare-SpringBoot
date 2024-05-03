@@ -21,21 +21,14 @@ public class Comment {
     @Column(name = "cmt_id", nullable = false)
     private Long id;
 
-    @Column(name = "cmt_usr_id", nullable = false)
-    private String userId;
-
-    @Column(name = "cmt_log_id", nullable = false)
-    private Long logId;
-
-    private String content;
-
-    private LocalDateTime createdAt;
-
     @ManyToOne
-    @JoinColumn(name = "cmt_usr_id", referencedColumnName = "usr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "cmt_usr_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "cmt_log_id", referencedColumnName = "log_id", insertable = false, updatable = false)
     private Log log;
+
+    private String content;
+    private LocalDateTime createdAt;
 }

@@ -20,12 +20,9 @@ public class AddCommentRequest {
 
     public Comment toEntity(User user, Log log) {
 
-        this.usrId = user.getId();
-        this.logId = log.getId();
-
         return Comment.builder()
-                .userId(usrId)
-                .logId(logId)
+                .user(user)
+                .log(log)
                 .content(content)
                 .createdAt(createdAt)
                 .build();

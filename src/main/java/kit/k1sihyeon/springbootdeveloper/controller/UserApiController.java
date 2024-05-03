@@ -20,7 +20,7 @@ public class UserApiController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/api/users")
+    @RequestMapping("/api/users")
     public ResponseEntity<User> addUser(@RequestBody AddUserRequest request) {
         User savedUser = userService.addUser(request);
 

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class AddLogRequest {
-    private Long cmtId;
     private Long camId;
     private String content;
     private String imagePath;
