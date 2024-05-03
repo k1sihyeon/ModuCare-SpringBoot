@@ -24,13 +24,11 @@ public class AddLogRequest {
         this.isChecked = true;
     }
 
-    public Log toEntity(Camera camera, Comment comment) {
+    public Log toEntity(Camera camera) {
 
         this.camId = camera.getId();
-        this.cmtId = comment.getId();
 
         return Log.builder()
-                .cmtId(cmtId)
                 .camId(camId)
                 .content(content)
                 .imagePath(imagePath)

@@ -18,9 +18,6 @@ public class Log {
     @Column(name = "log_id", nullable = false)
     private Long id;
 
-    @Column(name = "cmt_id")
-    private Long cmtId;
-
     @Column(name = "cam_id", nullable = false)
     private Long camId;
 
@@ -30,8 +27,7 @@ public class Log {
     private Boolean isChecked;
 
     @Builder
-    public Log(Long cmtId, Long camId, String content, String imagePath, LocalDateTime createdAt, Boolean isChecked) {
-        this.cmtId = cmtId;
+    public Log(Long camId, String content, String imagePath, LocalDateTime createdAt, Boolean isChecked) {
         this.camId = camId;
         this.content = content;
         this.imagePath = imagePath;
@@ -42,10 +38,6 @@ public class Log {
     public void check() {
         this.isChecked = true;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "cmt_id", referencedColumnName = "cmt_id", insertable = false, updatable = false)
-    private Comment comment;
 
     @ManyToOne
     @JoinColumn(name = "cam_id", referencedColumnName = "cam_id", insertable = false, updatable = false)

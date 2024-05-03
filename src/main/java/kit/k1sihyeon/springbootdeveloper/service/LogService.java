@@ -22,9 +22,7 @@ public class LogService {
     public Log addLog(AddLogRequest request) {
         Camera camera = cameraRepository.findById(request.getCamId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid camera id"));
-        Comment comment = commentRepository.findById(request.getCmtId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid comment id"));
 
-        return logRepository.save(request.toEntity(camera, comment));
+        return logRepository.save(request.toEntity(camera));
     }
 }

@@ -1,6 +1,7 @@
 package kit.k1sihyeon.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "comment")
 public class Comment {
 
@@ -21,19 +24,18 @@ public class Comment {
     @Column(name = "usr_id", nullable = false)
     private String userId;
 
+    @Column(name = "log_id", nullable = false)
+    private Long logId;
+
     private String content;
 
     private LocalDateTime createdAt;
-
-    @Builder
-    public Comment(String userId, String content, LocalDateTime createdAt) {
-        this.userId = userId;
-        this.content = content;
-        this.createdAt = createdAt;
-    }
 
     @ManyToOne
     @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", insertable = false, updatable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "log_id", referencedColumnName = "log_id", insertable = false, updatable = false)
+    private Log log;
 }
