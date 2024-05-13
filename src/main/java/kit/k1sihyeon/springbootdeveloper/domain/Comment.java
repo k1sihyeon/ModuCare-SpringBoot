@@ -1,14 +1,12 @@
 package kit.k1sihyeon.springbootdeveloper.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,11 +19,11 @@ public class Comment {
     @Column(name = "cmt_id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne @Setter
     @JoinColumn(name = "cmt_usr_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne @Setter
     @JoinColumn(name = "cmt_log_id", referencedColumnName = "log_id", insertable = false, updatable = false)
     private Log log;
 

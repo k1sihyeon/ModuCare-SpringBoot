@@ -24,4 +24,22 @@ public class LogService {
 
         return logRepository.save(request.toEntity(camera));
     }
+
+    public Log getLog(Long id) {
+        Log log = logRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
+
+        Camera cam = log.getCamera();
+
+        return Log.builder()
+                .camera(cam)
+                .id(log.getId())
+                .content(log.getContent())
+                .imagePath(log.getImagePath())
+                .createdAt(log.getCreatedAt())
+                .isChecked(log.getIsChecked())
+                .build();
+
+    }
+
 }

@@ -21,8 +21,8 @@ public class Log {
     @Column(name = "log_id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "lcam_id", referencedColumnName = "cam_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Camera.class)
+    @JoinColumn(name = "cam", nullable = false)
     private Camera camera;
 
     private String content;
