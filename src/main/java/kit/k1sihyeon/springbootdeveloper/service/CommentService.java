@@ -4,6 +4,7 @@ import kit.k1sihyeon.springbootdeveloper.domain.Comment;
 import kit.k1sihyeon.springbootdeveloper.domain.Log;
 import kit.k1sihyeon.springbootdeveloper.domain.User;
 import kit.k1sihyeon.springbootdeveloper.dto.AddCommentRequest;
+import kit.k1sihyeon.springbootdeveloper.dto.CommentResponseDto;
 import kit.k1sihyeon.springbootdeveloper.repository.CommentRepository;
 import kit.k1sihyeon.springbootdeveloper.repository.LogRepository;
 import kit.k1sihyeon.springbootdeveloper.repository.UserRepository;
@@ -11,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -25,30 +29,27 @@ public class CommentService {
         this.logRepository = logRepository;
     }
 
-    public Comment addComment(AddCommentRequest request) {
+    public Comment addComment(AddCommentRequest request, Long logId) {
         User user = userRepository.findById(request.getUsrId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
 
-        Log log = logRepository.findById(request.getLogId())
+        Log log = logRepository.findById(logId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
 
-        Comment comment = new Comment();
-        comment.setContent(request.getContent());
-        comment.setCreatedAt(request.getCreatedAt());
-        comment.setUser(user);
-        comment.setLog(log);
+        Comment comment = request.toEntity(user, log);
+        log.addComment(comment);
 
         return commentRepository.save(comment);
     }
 
-    public Comment getComment(Long id) {
+    public List<CommentResponseDto> findByLog(Long id) {
+        Log log = logRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
 
-        Comment comment = commentRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid comment id"));
-
-        User user = comment.getUser();
-
-
-        return comment;
+        return log.getComments().stream()
+                .map(CommentResponseDto::new)
+                .collect(Collectors.toList());
     }
+
+
 }

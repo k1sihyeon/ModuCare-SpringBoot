@@ -19,7 +19,6 @@ public class AddCommentRequest {
     private LocalDateTime createdAt;
 
     public Comment toEntity(User user, Log log) {
-
         return Comment.builder()
                 .user(user)
                 .log(log)
@@ -27,4 +26,5 @@ public class AddCommentRequest {
                 .createdAt(createdAt)
                 .build();
     }
+
 }

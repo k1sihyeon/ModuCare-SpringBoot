@@ -8,11 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class AddLogRequest {
+    private Long logId;
     private Long camId;
     private String content;
     private String imagePath;
@@ -24,12 +27,15 @@ public class AddLogRequest {
     }
 
     public Log toEntity(Camera camera) {
-        return Log.builder()
+        Log log = Log.builder()
                 .camera(camera)
                 .content(content)
                 .imagePath(imagePath)
                 .createdAt(createdAt)
                 .isChecked(isChecked)
                 .build();
+
+        return log;
     }
+
 }

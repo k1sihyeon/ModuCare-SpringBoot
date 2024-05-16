@@ -5,6 +5,7 @@ import kit.k1sihyeon.springbootdeveloper.domain.Comment;
 import kit.k1sihyeon.springbootdeveloper.domain.Log;
 import kit.k1sihyeon.springbootdeveloper.domain.User;
 import kit.k1sihyeon.springbootdeveloper.dto.AddLogRequest;
+import kit.k1sihyeon.springbootdeveloper.dto.LogResponseDto;
 import kit.k1sihyeon.springbootdeveloper.repository.CameraRepository;
 import kit.k1sihyeon.springbootdeveloper.repository.CommentRepository;
 import kit.k1sihyeon.springbootdeveloper.repository.LogRepository;
@@ -17,12 +18,18 @@ import org.springframework.stereotype.Service;
 public class LogService {
     private final LogRepository logRepository;
     private final CameraRepository cameraRepository;
+    private final CommentRepository commentRepository;
 
     public Log addLog(AddLogRequest request) {
         Camera camera = cameraRepository.findById(request.getCamId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid camera id"));
 
-        return logRepository.save(request.toEntity(camera));
+        Log log = request.toEntity(camera);
+
+        // 댓글 추가
+
+
+        return logRepository.save(log);
     }
 
     public Log getLog(Long id) {
@@ -40,6 +47,13 @@ public class LogService {
                 .isChecked(log.getIsChecked())
                 .build();
 
+    }
+
+    public LogResponseDto findById(Long id) {
+        Log log = logRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
+
+        return new LogResponseDto(log);
     }
 
 }

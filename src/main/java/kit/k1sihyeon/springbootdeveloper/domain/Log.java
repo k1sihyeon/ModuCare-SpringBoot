@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -30,7 +32,18 @@ public class Log {
     private LocalDateTime createdAt;
     private Boolean isChecked;
 
+    @OneToMany(mappedBy = "log", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     public void check() {
         this.isChecked = true;
+    }
+
+    public void addComment(Comment comment) {
+        if (comments == null) {
+            comments = new ArrayList<>();
+        }
+        comments.add(comment);
+        comment.setLog(this);
     }
 }
