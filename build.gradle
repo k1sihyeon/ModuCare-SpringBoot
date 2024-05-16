@@ -19,6 +19,9 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'com.google.firebase:firebase-admin:9.2.0'           // Google Firebase Admin
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'     // Jackson Data Bind
 }
 
 test {

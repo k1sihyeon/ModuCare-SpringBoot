@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Getter
 public class LogResponseDto {
     private Long logId;
-    private Long camId;
+    private String location;
     private String content;
     private String imagePath;
     private String createdAt;
@@ -21,7 +21,7 @@ public class LogResponseDto {
 
     public LogResponseDto(Log log) {
         this.logId = log.getId();
-        this.camId = log.getCamera().getId();
+        this.location = log.getCamera().getLocation();
         this.content = log.getContent();
         this.imagePath = log.getImagePath();
         this.createdAt = log.getCreatedAt().toString();

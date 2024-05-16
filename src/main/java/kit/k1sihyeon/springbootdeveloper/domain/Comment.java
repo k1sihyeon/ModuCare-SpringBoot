@@ -20,11 +20,11 @@ public class Comment {
     private Long id;
 
     @ManyToOne @Setter
-    @JoinColumn(name = "cmt_usr_id", referencedColumnName = "user_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "cmt_usr_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
     @ManyToOne @Setter @Getter
-    @JoinColumn(name = "log_id", referencedColumnName = "log_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "cmt_log_id", referencedColumnName = "log_id", nullable = false)
     private Log log;
 
     private String content;
