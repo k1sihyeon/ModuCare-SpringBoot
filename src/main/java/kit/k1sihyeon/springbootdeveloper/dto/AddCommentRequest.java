@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 public class AddCommentRequest {
     private String usrId;
-    private Long logId;
     private String content;
     private LocalDateTime createdAt;
 

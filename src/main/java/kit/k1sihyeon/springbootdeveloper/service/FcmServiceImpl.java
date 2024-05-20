@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auth.oauth2.GoogleCredentials;
 import kit.k1sihyeon.springbootdeveloper.dto.FcmMessageDto;
 import kit.k1sihyeon.springbootdeveloper.dto.FcmSendDto;
+import kit.k1sihyeon.springbootdeveloper.repository.FcmService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

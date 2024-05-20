@@ -23,7 +23,6 @@ public class User {
     @Column(name = "user_name", nullable = false)
     private String name;
 
-    @JsonIgnore
     private String email;
     private String position;
 

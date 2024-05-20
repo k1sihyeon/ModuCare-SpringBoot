@@ -1,4 +1,4 @@
-package kit.k1sihyeon.springbootdeveloper.service;
+package kit.k1sihyeon.springbootdeveloper.repository;
 
 import kit.k1sihyeon.springbootdeveloper.dto.FcmSendDto;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package kit.k1sihyeon.springbootdeveloper.controller;
 
 import kit.k1sihyeon.springbootdeveloper.dto.FcmSendDto;
-import kit.k1sihyeon.springbootdeveloper.service.FcmService;
+import kit.k1sihyeon.springbootdeveloper.repository.FcmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

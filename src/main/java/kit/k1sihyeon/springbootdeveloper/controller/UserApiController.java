@@ -10,20 +10,28 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
 
-    @RequestMapping("/api/users/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<User> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
 
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping("/api/users")
+    @PostMapping
     public ResponseEntity<User> addUser(@RequestBody AddUserRequest request) {
         User savedUser = userService.addUser(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<User> getUser(@PathVariable String userId) {
+//        User user = userService.getUser(userId);
+//
+//        return ResponseEntity.ok(user);
+//    }
 }

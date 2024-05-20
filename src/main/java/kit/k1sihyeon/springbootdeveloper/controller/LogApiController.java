@@ -38,7 +38,6 @@ public class LogApiController {
     public ResponseEntity<LogResponseDto> getLog(@PathVariable Long id) {
 
         LogResponseDto dto = logService.findById(id);
-        //List<CommentResponseDto> comments = dto.getCommnets();
 
         return ResponseEntity.ok(dto);
     }
