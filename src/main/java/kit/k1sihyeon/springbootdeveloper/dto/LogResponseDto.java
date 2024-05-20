@@ -17,7 +17,7 @@ public class LogResponseDto {
     private String imagePath;
     private String createdAt;
     private Boolean isChecked;
-    private List<CommentResponseDto> comments;
+    //private List<CommentResponseDto> comments;
 
     public LogResponseDto(Log log) {
         this.logId = log.getId();
@@ -26,11 +26,11 @@ public class LogResponseDto {
         this.imagePath = log.getImagePath();
         this.createdAt = log.getCreatedAt().toString();
         this.isChecked = log.getIsChecked();
-        this.comments = Optional.ofNullable(log.getComments())
-                .orElse(Collections.emptyList())
-                .stream()
-                .map(CommentResponseDto::new)
-                .collect(Collectors.toList());
+//        this.comments = Optional.ofNullable(log.getComments())
+//                .orElse(Collections.emptyList())
+//                .stream()
+//                .map(CommentResponseDto::new)
+//                .collect(Collectors.toList());
     }
 
 }

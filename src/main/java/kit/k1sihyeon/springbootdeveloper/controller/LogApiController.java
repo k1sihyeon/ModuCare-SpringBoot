@@ -29,16 +29,21 @@ public class LogApiController {
 
     @PostMapping
     public ResponseEntity<LogResponseDto> addLog(@RequestBody AddLogRequest request) {
-
         Log savedLog = logService.addLog(request);
         LogResponseDto dto = new LogResponseDto(savedLog);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
+    @GetMapping
+    public ResponseEntity<List<LogResponseDto>> getLogList() {
+        List<LogResponseDto> dtos = logService.findAll();
+
+        return ResponseEntity.ok(dtos);
+    }
+
     @PatchMapping("/{id}/checked")
     public ResponseEntity<LogResponseDto> checkLog(@PathVariable Long id, @RequestBody Boolean checked) {
-
         Log checkedLog = logService.updateChecked(id, checked);
         LogResponseDto dto = new LogResponseDto(checkedLog);
 
@@ -47,7 +52,6 @@ public class LogApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<LogResponseDto> getLog(@PathVariable Long id) {
-
         LogResponseDto dto = logService.findById(id);
 
         return ResponseEntity.ok(dto);

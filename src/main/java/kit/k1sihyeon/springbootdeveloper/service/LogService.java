@@ -13,6 +13,9 @@ import kit.k1sihyeon.springbootdeveloper.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class LogService {
@@ -34,6 +37,12 @@ public class LogService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
 
         return new LogResponseDto(log);
+    }
+
+    public List<LogResponseDto> findAll() {
+        return logRepository.findAll().stream()
+                .map(LogResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     public Log updateChecked(Long id, Boolean checked) {
