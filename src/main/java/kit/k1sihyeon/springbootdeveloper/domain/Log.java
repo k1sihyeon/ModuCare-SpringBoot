@@ -1,10 +1,7 @@
 package kit.k1sihyeon.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,14 +27,11 @@ public class Log {
     private String content;
     private String imagePath;
     private LocalDateTime createdAt;
+    @Setter
     private Boolean isChecked;
 
     @OneToMany(mappedBy = "log", cascade = CascadeType.ALL)
     private List<Comment> comments;
-
-    public void check() {
-        this.isChecked = true;
-    }
 
     public void addComment(Comment comment) {
         if (comments == null) {

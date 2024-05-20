@@ -8,6 +8,8 @@ import kit.k1sihyeon.springbootdeveloper.dto.LogResponseDto;
 import kit.k1sihyeon.springbootdeveloper.service.LogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.LazyInitializationExcludeFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,15 @@ public class LogApiController {
         LogResponseDto dto = new LogResponseDto(savedLog);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+
+    @PatchMapping("/{id}/checked")
+    public ResponseEntity<LogResponseDto> checkLog(@PathVariable Long id, @RequestBody Boolean checked) {
+
+        Log checkedLog = logService.updateChecked(id, checked);
+        LogResponseDto dto = new LogResponseDto(checkedLog);
+
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/{id}")

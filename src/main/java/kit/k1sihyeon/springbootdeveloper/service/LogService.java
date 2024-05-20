@@ -36,4 +36,13 @@ public class LogService {
         return new LogResponseDto(log);
     }
 
+    public Log updateChecked(Long id, Boolean checked) {
+        Log log = logRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid log id"));
+
+        log.setIsChecked(checked);
+
+        return logRepository.save(log);
+    }
+
 }
