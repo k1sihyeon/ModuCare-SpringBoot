@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.LazyInitializationExcludeFilter;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class LogApiController {
     @GetMapping
     public ResponseEntity<List<LogResponseDto>> getLogList() {
         List<LogResponseDto> dtos = logService.findAll();
+        dtos.sort((o1, o2) -> o2.getLogId().compareTo(o1.getLogId()));
 
         return ResponseEntity.ok(dtos);
     }
