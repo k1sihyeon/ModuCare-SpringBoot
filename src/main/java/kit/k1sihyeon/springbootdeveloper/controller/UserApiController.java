@@ -2,6 +2,7 @@ package kit.k1sihyeon.springbootdeveloper.controller;
 
 import kit.k1sihyeon.springbootdeveloper.domain.User;
 import kit.k1sihyeon.springbootdeveloper.dto.AddUserRequest;
+import kit.k1sihyeon.springbootdeveloper.dto.UserResponseDto;
 import kit.k1sihyeon.springbootdeveloper.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,10 +29,10 @@ public class UserApiController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
-//    @GetMapping("/{userId}")
-//    public ResponseEntity<User> getUser(@PathVariable String userId) {
-//        User user = userService.getUser(userId);
-//
-//        return ResponseEntity.ok(user);
-//    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> getUser(@PathVariable String userId) {
+        UserResponseDto user = userService.getUser(userId);
+
+        return ResponseEntity.ok(user);
+    }
 }
