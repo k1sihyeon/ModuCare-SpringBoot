@@ -11,10 +11,14 @@ import lombok.NoArgsConstructor;
 public class AddCameraRequest {
 
     private String location;
+    private Double latitude;
+    private Double longitude;
 
     public Camera toEntity() {
         return Camera.builder()
                 .location(location)
+                .latitude(latitude)
+                .longitude(longitude)
                 .build();
     }
 }

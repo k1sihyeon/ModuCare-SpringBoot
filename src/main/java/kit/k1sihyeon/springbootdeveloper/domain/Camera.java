@@ -19,9 +19,17 @@ public class Camera {
     @Column(name = "cam_location")
     private String location;
 
+    @Column(name = "cam_latitude")
+    private Double latitude;
+
+    @Column(name = "cam_longitude")
+    private Double longitude;
+
     @Builder
-    public Camera(String location) {
+    public Camera(String location, Double latitude, Double longitude) {
         this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
 }
