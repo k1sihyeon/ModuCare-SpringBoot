@@ -54,4 +54,10 @@ public class LogService {
         return logRepository.save(log);
     }
 
+    public List<LogResponseDto> findUncheckedLogs() {
+        return logRepository.findByIsCheckedFalse().stream()
+                .map(LogResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }

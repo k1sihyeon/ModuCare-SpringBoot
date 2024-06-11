@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 public class LogResponseDto {
     private Long logId;
     private String location;
+    private Double latitude;
+    private Double longitude;
     private String content;
     private String imagePath;
     private String createdAt;
@@ -22,6 +24,8 @@ public class LogResponseDto {
     public LogResponseDto(Log log) {
         this.logId = log.getId();
         this.location = log.getCamera().getLocation();
+        this.latitude = log.getCamera().getLatitude();
+        this.longitude = log.getCamera().getLongitude();
         this.content = log.getContent();
         this.imagePath = log.getImagePath();
         this.createdAt = log.getCreatedAt().toString();

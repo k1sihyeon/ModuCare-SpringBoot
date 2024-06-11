@@ -59,5 +59,12 @@ public class LogApiController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/unchecked")
+    public ResponseEntity<List<LogResponseDto>> getUncheckedLogs() {
+        List<LogResponseDto> dtos = logService.findUncheckedLogs();
+        dtos.sort((o1, o2) -> o2.getLogId().compareTo(o1.getLogId()));
+
+        return ResponseEntity.ok(dtos);
+    }
 
 }
